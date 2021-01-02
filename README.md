@@ -1,2 +1,2 @@
 # mangamee
-manga reader
+manga reader website
