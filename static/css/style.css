@@ -1,0 +1,186 @@
+*{
+
+    margin:0px;
+    padding: 0px;
+
+}
+
+body {
+
+margin: 0;
+background-image: url('../image/bgfull2.jpg');
+background-attachment: fixed;
+background-repeat: no-repeat;
+background-position: center;
+
+}
+
+  
+
+.container{
+
+  margin-left: 150px;
+  margin-top: 100px;
+  /* z-index: 5; */
+}
+
+
+/* navbar section */
+
+.sideNavOpen{
+
+    height: 100%;
+    width: 300px;
+    position: fixed;
+    top:0;
+    left: 0;
+    z-index: 10;
+    overflow-x: hidden;
+
+    transition: 0.15s;
+    background-color: #5ebde2;
+}
+
+
+.sideNavClose{
+    /* tinggi */
+    height: 100%;
+    /* lebar    */
+    width: 60px;
+    /* posisi */
+    position: fixed;
+    top:0;
+    left: 0;
+    /* belom tau */
+    z-index: 10;
+
+    overflow-x: hidden;
+    
+    /* animasi */
+    transition: 0.15s;
+    /* color */
+    background-color: #FE0A52;
+}
+
+
+/* ini buat jadiin  gelap gitu, nanti kita coba */
+
+.ContentOverlay{
+    display: block;
+    position: fixed;
+    height: 100%;
+    top:0;
+    left: 0;
+    z-index: 7;
+    right: 0;
+    bottom: 0;
+    cursor: pointer;
+    background-color: rgba(0,0,0,0.5);
+}
+
+.ContentOverlayClose{
+   display: none;
+}
+
+.menuBar{
+    color: #FE0A52 !important;
+    font-size: 24px !important;
+}
+
+.nav-menu-item{
+    
+    font-size: 1.5rem;
+    text-decoration: none;
+    color: white;
+}
+
+/* hover, berarti kalau mouse ngarah kesana */
+
+.nav-menu-item:hover{
+  text-decoration: none;
+  color: white;
+  border-left: 5px solid white;
+  transition: 0.1s;
+}
+
+/* endnavbar */
+
+/* searchbar section */
+
+.search {
+  width: 100%;
+  height: 20px;
+  position: relative;
+  display: flex;
+}
+
+.searchTerm {
+  width: 100%;
+  border: 2px solid #4485e6;
+  border-right: none;
+  padding: 16px;
+  height: 50px;
+  border-radius: 5px 0 0 5px;
+  outline: none;
+  color: #9DBFAF;
+}
+
+.searchTerm:focus{
+  color: #4485e6;
+}
+
+.searchButton {
+
+  width: 60px;
+  height: 50px;
+  border: 1px solid #4485e6;
+  background: #4485e6;
+  text-align: center;
+  color: #fff;
+  border-radius: 0 5px 5px 0;
+  cursor: pointer;
+  font-size: 20px;
+}
+
+/*Resize the wrap to see the search bar change!*/
+.wrap{
+  width: 60%;
+  position: absolute;
+  top: 65%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+
+.radio{
+
+  display: inline-flex;
+  overflow: hidden;
+
+  position: absolute;
+  top: 350%;
+  left: 40%;
+  font-size: 14px;
+  font-family: 'Source Sans Pro', sans-serif;
+
+}
+
+.radio__input{
+
+  display: none;
+
+}
+
+.radio__label{
+
+  padding: 8px 14px;
+  font-size: 14px;
+  color: #ffffff;
+  background: #4485e6;
+  cursor: pointer;
+}
+
+
+.radio__input:checked +.radio__label{
+  background: #2d5899;
+}

@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block content %}
+{% load static %}
+
+<div class="container">
+
+    <form action = "{% url 'search_page' %}" method="GET">
+            
+        <div class="wrap">
+            <div class="search">
+                <input type="text" class="searchTerm" placeholder="manga title" name='manga_title'>
+                <button type="submit" class="searchButton">
+                    <i class="fa fa-search"></i>
+                </button>
+            </div>
+
+            <div class="radio">
+                <input class="radio__input", type="radio" value="ENG" name = "myRadio" id="myradio1" checked>
+                <label class="radio__label" for = "myradio1" >ENG</label>
+    
+                <input class="radio__input", type="radio" value="IND" name = "myRadio" id="myradio2">
+                <label class="radio__label" for = "myradio2" >IND</label>
+            </div>
+            
+        </div>
+
+
+
+    </form>
+
+</div>
+
+{% endblock content %}

@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="container">
+
+	{% for a in manga %}
+
+		<img src="{{a.image}}" class="img-fluid" alt=""><br>
+		<hr>
+
+    {% endfor %}
+    
+</div>
+
+{% endblock content %}

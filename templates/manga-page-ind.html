@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="container">
+
+    <div class="row">
+        <div class="card">
+        <img class="card-img-top" src="{{ cover_img }}" alt="">
+        <div class="card-body">
+            <p class="card-text"><strong> Summary </strong></p>
+            <p class="card-text text-justify">{{ summary }}</p>
+            <p class="card-text"><strong> Status : {{status}} </strong></p>
+            
+        </div>
+    
+
+    <ul class="list-group">
+        {% for a in manga reversed %}
+        <li class="list-group-item"><a href="{% url 'chapter_page_id' manga_name a.link %}">
+        {{ a.chapter_name }}</a></li>
+        {% endfor %}
+    </ul>
+
+    </div>
+</div>
+
+{% endblock content %}

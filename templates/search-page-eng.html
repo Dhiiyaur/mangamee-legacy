@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="container">
+    <p id="manga-title" class="text-center text-uppercase text-light"><strong>Result of : "{{search_title}}"</strong></p>
+    <div class="row">
+    {% for a in manga %}
+        <div class="col-lg-2 col-4 pt-3">
+            <div class="card h-100">
+                <a href="{% url 'manga-page-eng' a.link  %}" class="stretched-link"></a>
+                <img class= 'card-img-top' src="{{ a.thumbnail_image }}" />
+                <div class="card-body">
+                    <div class="card-text text-capitalize">
+                    <p><strong>{{ a.name|truncatechars:40 }}</strong></p>
+                    <small class="text-muted">{{ a.latest_chapter }} chapter - {{ a.status }}</small>
+                    </div>
+                </div>
+                <!-- <button type ="button" class="btn btn-secondary btn-block"> view </button> -->
+            </div>
+        </div>
+    {% endfor %}
+    </div> 
+</div>
+
+{% endblock content %}

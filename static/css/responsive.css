@@ -1,0 +1,81 @@
+@media (max-width: 575.98px) {
+
+    .container{
+        margin-left: 0px;
+        /* margin-top: 100px; */
+    }
+
+    .sideNavClose{
+        visibility: hidden;
+        background-color: #5ebde2;
+    
+    }
+
+    .sideNavOpen{
+        width: 250px;
+    }
+
+    .card .card-body .card-text {
+    
+        font-size: 0.6em;
+    }
+
+    .card-text{
+
+        font-size: 12px;
+    }
+
+    .manga-title{
+
+        font-size: .6em;
+        align-items: center;
+    }
+
+    .searchTerm {
+
+        height: 20px;
+
+      }
+
+    .searchButton {
+        
+        height: 36px;
+   
+    }
+
+    .radio{
+
+
+    
+        top: 325%;
+        left: 27%;
+
+      
+      }
+
+
+
+}
+
+
+@media (min-width: 576px) and (max-width: 767.98px) {
+
+}
+
+
+@media (min-width: 768px) and (max-width: 991.98px) {
+
+
+}
+
+
+@media (min-width: 992px) and (max-width: 1199.98px) {
+
+
+}
+
+
+@media (min-width: 1200px) {
+
+
+}

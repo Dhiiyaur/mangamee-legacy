@@ -1,0 +1,21 @@
+<!-- navbar -->
+{% load static %}
+<nav class="navbar shadow-sm fixed-top navbar-light bg-light">
+<!-- <nav class="navbar navbar-expand-lg navbar-dark"> -->
+  <div class="container-fluid">
+      <a id="NavMenuBar" class="navbar-brand menuBar" href="#"><i class="fa fa-bars"></i> </a>
+      <a class="navbar-brand" href="#">{{ chapter }}</a>
+  </div>
+  <!-- <div class="mx-auto order-0">
+      <p class="navbar-brand mx-auto" href="#">Navbar</p>
+  </div> -->
+</nav>
+
+<div id="SideNavID" class="sideNavClose mt-5">
+  <!-- masukin menu yang di nvabar kesini -->
+  <br>
+  <a class="nav-menu-item" href="/"><i class="fa m-3 fa-home"></i><span class="menuText d-none">Home</span></a><br>
+  <a class="nav-menu-item" href="{% url 'browse-manga' %}"><i class="fa m-3 fa-search"></i><span class="menuText d-none">Browse</span></a><br>
+
+</div>
+<div id="ContentOverlayID"  class="ContentOverlayClose"></div>
