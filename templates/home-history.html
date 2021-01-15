@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+{% block content %}
+{% load static %}
+
+
+<div class="container">
+
+    <form action = "{% url 'search_page' %}" method="GET">
+            
+        <div class="wrap">
+            <div class="search">
+                <input type="text" class="searchTerm" placeholder="manga title" name='manga_title'>
+                <button type="submit" class="searchButton">
+                    <i class="fa fa-search"></i>
+                </button>
+            </div>
+
+            <div class="radio">
+                <input class="radio__input", type="radio" value="ENG" name = "myRadio" id="myradio1" checked>
+                <label class="radio__label" for = "myradio1" >ENG</label>
+    
+                <input class="radio__input", type="radio" value="IND" name = "myRadio" id="myradio2">
+                <label class="radio__label" for = "myradio2" >IND</label>
+            </div>
+            
+        </div>
+    </form>
+
+</div>
+
+<div class="history">
+    <div class="container pb-5 justify-content-center mx-auto">
+        <p id="manga-title" class="text-center text-uppercase text-light"><strong> History </strong></p>
+        <div class="row pb-5">
+        {% for a in cookies %}
+            <div class="col-lg-2 col-4 pt-3">
+                <div class="card h-100">
+        
+                    <img class= 'card-img-top' src="{{ a.cover_img }}" />
+                    <div class="card-body">
+                        <a href="{{ a.link }}" class="stretched-link"></a>
+                        <div class="card-text text-capitalize">
+                        <p><strong>{{ a.name|truncatechars:40 }}</strong></p>
+                        <small class="text-muted">Last read : {{ a.latest }}</small>
+                        </div>
+                    </div>
+                     <!-- gunain z-index biar buttonnya ada di atas card, ambil data dari dataset-record -->
+                    <div class="card-footer"  style="z-index: 99;">
+                        <a href="" id = 'footer-card-cookie' class="btn btn-danger btn-block" data-record="{{a.ID}}" onclick="oneDelHistory()">Delete</a>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+        </div>
+        <a href="" class="btn btn-danger btn-block" onclick="delHistory()"> Delete all history </a> 
+    </div>
+</div>
+
+<script type="text/javascript" src="{% static 'css/cookiesHistory.js' %}"></script>
+{% endblock content %}

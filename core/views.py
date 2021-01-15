@@ -3,15 +3,25 @@ from django.views.generic import View
 from .models import BrowseMangaName
 from .models import MH_manga_name, MH_manga_chapter, MH_manga_image
 from .models import ID_manga_name, ID_manga_chapter, ID_manga_image
-
+import json
 # Create your views here.
 
 class HomeView(View):
 
     def get(self, request):
 
-        template = 'home.html'
-        return render(request, template)
+        # print(request.COOKIES.get('history'))
+        if request.COOKIES.get('history') != None:
+
+            cookies = json.loads(request.COOKIES.get('history'))
+            print(cookies)
+            template = 'home-history.html'
+            return render(request, template, {'cookies' : cookies})
+        
+        else:
+
+            template = 'home.html'
+            return render(request, template)
 
 
 class BrowserManga(View):

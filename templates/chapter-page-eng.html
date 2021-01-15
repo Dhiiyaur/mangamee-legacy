@@ -1,15 +1,17 @@
 {% extends "base.html" %}
 {% block content %}
+{% load static %}
 
-<div class="container">
+<div class="container justify-content-center mx-auto">
 
 	{% for a in manga %}
 
 		<img src="{{a.image}}" class="img-fluid" alt=""><br>
-		<hr>
+		
 
     {% endfor %}
     
 </div>
 
+<script type="text/javascript" src="{% static 'css/cookiesChapter.js' %}"></script>
 {% endblock content %}

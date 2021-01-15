@@ -53,7 +53,15 @@
       
       }
 
+    .history{
 
+        top: 500px;
+        }
+
+        #footer-card-cookie {
+
+            font-size :12px;
+    }
 
 }
 
