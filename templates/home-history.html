@@ -56,5 +56,9 @@
     </div>
 </div>
 
-<script type="text/javascript" src="{% static 'css/cookiesHistory.js' %}"></script>
+{% if userName %}
+    <script type="text/javascript" src="{% static 'js/Login_cookiesHistory.js' %}"></script>
+{% else %}
+    <script type="text/javascript" src="{% static 'js/cookiesHistory.js' %}"></script>
+{% endif %}
 {% endblock content %}

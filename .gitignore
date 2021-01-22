@@ -6,3 +6,4 @@ __pycache__/
 
 ### secret code
 setting/secret_code.py
+core/config.py

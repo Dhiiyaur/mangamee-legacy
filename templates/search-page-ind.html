@@ -24,5 +24,9 @@
     </div> 
 </div>
 
-<script type="text/javascript" src="{% static 'css/cookiesGetName.js' %}"></script>
+{% if uid %}
+    <script type="text/javascript" src="{% static 'js/Login_cookiesGetName.js' %}"></script>
+{% else %}
+    <script type="text/javascript" src="{% static 'js/cookiesGetName.js' %}"></script>
+{% endif %}
 {% endblock content %}

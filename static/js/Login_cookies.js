@@ -40,12 +40,12 @@ function createCookie(){
 
     
     var jsonValue = JSON.stringify(customValue);
-    setCookie('history', jsonValue, 365);
+    setCookie('FireBaseHistory', jsonValue, 1);
 
 }
 function updateCookie(){
 
-    let cookies = JSON.parse(getCookie('history'));
+    let cookies = JSON.parse(getCookie('FireBaseHistory'));
 
     // checking manga is input or not 
 
@@ -68,14 +68,14 @@ function updateCookie(){
         )
 
         var jsonValue = JSON.stringify(cookies);
-        setCookie('history', jsonValue, 365);
+        setCookie('FireBaseHistory', jsonValue, 1);
     }
     
     
 }
 
 function checkCookie(){
-    var user = getCookie('history');
+    var user = getCookie('FireBaseHistory');
     if (user != ""){
 
         updateCookie();

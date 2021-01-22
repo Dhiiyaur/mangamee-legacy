@@ -27,6 +27,7 @@ INSTALLED_APPS = [
 
     # apps 
     'core',
+    'crispy_forms',
 
     
 ]

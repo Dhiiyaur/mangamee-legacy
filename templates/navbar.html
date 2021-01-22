@@ -16,6 +16,11 @@
   <br>
   <a class="nav-menu-item" href="/"><i class="fa m-3 fa-home"></i><span class="menuText d-none">Home</span></a><br>
   <a class="nav-menu-item" href="{% url 'browse-manga' %}"><i class="fa m-3 fa-search"></i><span class="menuText d-none">Browse</span></a><br>
-
+  {% if userName %}
+    <a class="nav-menu-item" href="#"><i class="fa m-3 fa-user"></i><span class="menuText d-none"> {{ userName }}</span></a><br>
+    <a class="nav-menu-item" href="{% url 'logoutUser' %}"><i class="fa m-3 fa-exclamation-circle"></i><span class="menuText d-none"> Logout</span></a><br>
+  {% else %}
+    <a class="nav-menu-item" href="{% url 'loginUser' %}"><i class="fa m-3 fa-user"></i><span class="menuText d-none"> Login</span></a><br>
+  {% endif %}
 </div>
 <div id="ContentOverlayID"  class="ContentOverlayClose"></div>

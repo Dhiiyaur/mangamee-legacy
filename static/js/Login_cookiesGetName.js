@@ -10,7 +10,6 @@ function setCookie(cname, cvalue, exdays) {
 
 function getName(){
 
-    console.log('aalaah sia booyy')
     let mangaNameCookies = event.currentTarget.dataset.record
     setCookie('mangaName', mangaNameCookies, 1)
 }

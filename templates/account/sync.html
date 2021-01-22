@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% block content %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+
+<div class="container justify-content-center mx-auto">
+    <div class="row">
+        <div class="col">
+            <div id="temp" data-record="{{request.session.temp}}"></div>
+            <p class="text-center text-uppercase text-light"> Sync data </p>
+            <a href="{% url 'home_page' %}" class="btn btn-primary btn-block"> Ok </a>
+        </div>
+    </div>
+</div>
+
+<script>
+
+    let temp = document.getElementById("temp").dataset.record;
+    console.log(temp)
+
+    function setCookie(cname, cvalue, exdays) {
+
+        var d = new Date();
+        d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+        var expires = "expires="+d.toUTCString();
+
+        document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+
+    }
+    setCookie('FireBaseHistory', temp, 365);
+    
+</script>
+{% endblock content %}

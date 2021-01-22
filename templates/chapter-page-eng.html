@@ -13,5 +13,9 @@
     
 </div>
 
-<script type="text/javascript" src="{% static 'css/cookiesChapter.js' %}"></script>
+{% if uid %}
+    <script type="text/javascript" src="{% static 'js/Login_cookiesChapter.js' %}"></script>
+{% else %}
+    <script type="text/javascript" src="{% static 'js/cookiesChapter.js' %}"></script>
+{% endif %}
 {% endblock content %}
