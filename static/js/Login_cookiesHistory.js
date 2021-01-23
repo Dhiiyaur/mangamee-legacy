@@ -53,4 +53,3 @@ function delHistory(){
     setCookie('FireBaseHistory', '', -1);
 }
 
-console.log('username ini')

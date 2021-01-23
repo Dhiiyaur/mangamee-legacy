@@ -117,21 +117,26 @@ def logout(request):
 
 def syncData(request):
 
+    template = 'account/sync.html'
     uid = request.session['uid']
     userName = db.child("users").get().val().get(uid).get('name')
 
 
     try:
         cookies_firebase = db.child("userHistory").get().val().get(userName)
-        cookies_firebase_dumps = json.dumps(cookies_firebase)
-        request.session['temp'] = cookies_firebase_dumps
 
+        if cookies_firebase != None:
+
+            cookies_firebase_dumps = json.dumps(cookies_firebase)
+            request.session['temp'] = cookies_firebase_dumps
+
+        else:
+
+            return render(request, template, {'userName' : userName, 'uid' : '1'})
 
     except:
         pass
-        
-    # return redirect('home_page')
-    template = 'account/sync.html'
+ 
     return render(request, template, {'userName' : userName})
 
 
