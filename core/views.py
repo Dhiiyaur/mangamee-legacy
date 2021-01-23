@@ -195,7 +195,7 @@ class BrowserManga(View):
 
             uid = request.session['uid']
             userName = db.child("users").get().val().get(uid).get('name')
-            return render(request, template, {'dbManga' : dbManga, 'userName' : userName})
+            return render(request, template, {'dbManga' : dbManga, 'userName' : userName, 'uid' : '1'})
 
         return render(request, template, {'dbManga' : dbManga})
 
