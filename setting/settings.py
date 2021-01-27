@@ -29,6 +29,10 @@ INSTALLED_APPS = [
     'core',
     'crispy_forms',
 
+    # api
+    'rest_framework',
+    'corsheaders',
+
     
 ]
 
@@ -42,8 +46,10 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-
-    'whitenoise.middleware.WhiteNoiseMiddleware'
+    # static
+    'whitenoise.middleware.WhiteNoiseMiddleware',
+    # api
+    'corsheaders.middleware.CorsMiddleware',
 ]
 
 ROOT_URLCONF = 'setting.urls'
@@ -124,3 +130,8 @@ STATICFILES_DIRS = [
 ]
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
+
+# api cross-origin
+
+CORS_ORIGIN_WHITELIST = [*]
