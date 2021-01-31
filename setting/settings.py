@@ -12,7 +12,7 @@ SECRET_KEY = SECRET_KEY
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['mangamee.herokuapp.com','127.0.0.1']
+ALLOWED_HOSTS = ['mangamee.herokuapp.com','127.0.0.1','be-mangamee.herokuapp.com']
 
 
 # Application definition
