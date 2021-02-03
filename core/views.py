@@ -8,9 +8,9 @@ from .forms import loginUserForm, signupUserForm
 import json
 import pyrebase
 from .config import *
+
 # Create your views here.
 
-# firebase config
 
 firebaseConfig = {
 
@@ -25,9 +25,53 @@ firebase = pyrebase.initialize_app(firebaseConfig)
 auth    = firebase.auth()
 db      = firebase.database()
 
-# ---------------------------------------------------------------------------------
 
-# Acoount 
+
+class loginUser(View):
+
+    def get(self, request):
+
+        form = loginUserForm()
+        template = 'account/login.html'
+        return render(request, template, {'form' : form })
+
+    def post(self,request):
+
+        form = loginUserForm(request.POST or None)
+        template = 'account/login.html'
+
+        if form.is_valid():
+
+            email = form.cleaned_data.get('email')
+            password = form.cleaned_data.get('password')
+
+            try:
+                user = auth.sign_in_with_email_and_password(email, password)
+            except:
+                message = 'account doesnt exist'
+                return render(request, template, {'form' : form, 'message':message })
+
+
+            # add sesion ID for login
+            session_id = user['localId']
+            request.session['uid'] = str(session_id)
+            return redirect('syncData')   
+
+
+
+def logout(request):
+
+    try:
+        del request.session['uid']
+        
+    except :
+        pass
+
+    response = redirect('home_page')
+    response.delete_cookie('FireBaseHistory')
+    return response
+
+
 
 class signupUser(View):
 
@@ -67,54 +111,8 @@ class signupUser(View):
             return redirect('loginUser')
             
         return render(request, template_signup, {'form' : form })
-
-
-class loginUser(View):
-
-    def get(self, request):
-
-        form = loginUserForm()
-        template = 'account/login.html'
-        return render(request, template, {'form' : form })
-
-    def post(self,request):
-
-        form = loginUserForm(request.POST or None)
-        template = 'account/login.html'
-
-        if form.is_valid():
-
-            email = form.cleaned_data.get('email')
-            password = form.cleaned_data.get('password')
-
-            try:
-                user = auth.sign_in_with_email_and_password(email, password)
-            except:
-                message = 'account doesnt exist'
-                return render(request, template, {'form' : form, 'message':message })
-
-
-            # add sesion ID for login
-            session_id = user['localId']
-            request.session['uid'] = str(session_id)
-            # print(request.session['uid'])
-            return redirect('syncData')
-
-
-
-def logout(request):
-
-    try:
-        del request.session['uid']
         
-    except :
-        pass
-
-    response = redirect('home_page')
-    response.delete_cookie('FireBaseHistory')
-    return response
-
-
+            
 def syncData(request):
 
     template = 'account/sync.html'
@@ -140,8 +138,6 @@ def syncData(request):
     return render(request, template, {'userName' : userName})
 
 
-# -----------------------------------------------------------------------------------------------
-
 class HomeView(View):
 
     def get(self, request):
@@ -160,14 +156,15 @@ class HomeView(View):
             
             uid = request.session['uid']
             userName = db.child("users").get().val().get(uid).get('name')
+            
 
             # get data from local cookies, save to firebase
-            if request.COOKIES.get('FireBaseHistory') != None:
 
-                
+            if len(request.COOKIES.get('FireBaseHistory')) > 0:
+
+
                 cookies = json.loads(request.COOKIES.get('FireBaseHistory'))
                 db.child("userHistory").child(userName).set(cookies)
-
                 # fetch history from firebase
     
                 return render(request, template_history, {'cookies' : cookies, 'userName' : userName})
@@ -248,7 +245,6 @@ def SearchBar(request):
         
         context = { 'manga' : manga_data, 'search_title' : title}
         return render(request, templates_search_id, context)
-
 
 
 

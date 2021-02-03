@@ -104,30 +104,70 @@ class userRegisterAPI(APIView):
         return respone
 
 
-
-
-class userGetHistory(APIView):
+class userDeleteHistoryAPI(APIView):
 
     def post(self, request):
 
         data = request.data
+        userToken = data['token']
+
+        userName = db.child("users").get().val().get(userToken).get('name')
+        db.child("userHistory").child(userName).remove()
+
+        respone = Response(status=status.HTTP_200_OK)
+        return respone
+
+
+class userUpdateHistoryAPI(APIView):
+
+    def post(self, request):
+
+        data = request.data
+        print(data)
 
         # --------------- data params 
 
         userToken = data['token']
+        userHistory = data['history']
+
+        #----------------------------------
+        # print(userToken)
+        # print(userHistory)
+
+        userName = db.child("users").get().val().get(userToken).get('name')
+        db.child("userHistory").child(userName).set(userHistory)
+
+        respone = Response(status=status.HTTP_200_OK)
+        return respone
+
+
+class userGetHistoryAPI(APIView):
+
+    def post(self, request):
+
+        data = request.data
+        # --------------- data params 
+
+        userToken = data['token']
+        print(userToken)
 
         #----------------------------------
 
         userName = db.child("users").get().val().get(userToken).get('name')
-        userHistory = db.child("userHistory").get().val().get(userName)
 
-        userData = {
+        try:
+            userHistory = db.child("userHistory").get().val().get(userName)
+            userData = {
+                'history' : userHistory,
+            }
+            
+            respone = Response(userData, status=status.HTTP_200_OK)
+            return respone
 
-            'history' : userHistory
-        }
+        except:
 
-        respone = Response(userData, status=status.HTTP_200_OK)
-        return respone
+            respone = Response(status=status.HTTP_404_NOT_FOUND)
+            return respone
 
 
 
