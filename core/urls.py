@@ -18,9 +18,9 @@ urlpatterns = [
     
    # accounts
     
-    path('login/', views.loginUser.as_view(), name='loginUser'),
-    path('signup/', views.signupUser.as_view(), name='signupUser'),
-    path('logout', views.logout, name = 'logoutUser'),
-    path('sync', views.syncData, name = 'syncData'),
+    # path('login/', views.loginUser.as_view(), name='loginUser'),
+    # path('signup/', views.signupUser.as_view(), name='signupUser'),
+    # path('logout', views.logout, name = 'logoutUser'),
+    # path('sync', views.syncData, name = 'syncData'),
 
  ]
