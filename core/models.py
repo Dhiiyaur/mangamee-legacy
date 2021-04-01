@@ -47,7 +47,7 @@ def PopularMangaName(page):
 
 		dbManga = {}
 		dbManga['MangaCover'] = i.find("img")['src']
-		dbManga['MangaLink'] = i.find("a")['href']
+		dbManga['MangaLink'] = i.find("a")['href'].split('/')[-1]
 		dbManga['MangaTitle'] = i.find("a")['href'].split('/')[-1].split('_')[0].replace('-', ' ')
 
 		popularResult.append(dbManga)
