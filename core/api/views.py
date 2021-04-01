@@ -1,5 +1,6 @@
 from core.models import (
     BrowseMangaName,
+    PopularMangaName,
     MH_manga_name,
     MH_manga_chapter,
     MH_manga_image,
@@ -16,6 +17,8 @@ import json
 import pyrebase
 from core.config import *
 from rest_framework.parsers import JSONParser 
+from django.utils.decorators import method_decorator
+from django.views.decorators.cache import cache_page
 
 # user auth  -----------------------------------------------
 
@@ -181,8 +184,27 @@ class browseMangaAPI(APIView):
         return respone
 
 
+class popularMangaAPI(APIView):
+
+    def get(self, request):
+
+        try:
+            page = request.GET.get('page')
+            dbManga = PopularMangaName(page)
+            print(dbManga)
+
+            respone = Response(dbManga, status=status.HTTP_200_OK)
+            return respone
+
+        except:
+
+            respone = Response(status=status.HTTP_400_BAD_REQUEST)
+            return respone
+
 class searchMangaAPI(APIView):
 
+
+    @method_decorator(cache_page(60*10))
     def get(self, request):
 
         # --------------- data params 
@@ -201,8 +223,10 @@ class searchMangaAPI(APIView):
             respone = Response(result, status=status.HTTP_200_OK)
             return respone
 
+
 class chapterMangaAPI(APIView):
 
+    @method_decorator(cache_page(60*10))
     def get(self, request):
 
         # --------------- data params 
@@ -241,6 +265,7 @@ class chapterMangaAPI(APIView):
 
 class pageMangaAPI(APIView):
 
+    @method_decorator(cache_page(60*10))
     def get(self, request):
 
         # --------------- data params 

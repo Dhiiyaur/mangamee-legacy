@@ -6,6 +6,7 @@ from . import views
 urlpatterns = [
     
     path('browse/', views.browseMangaAPI.as_view(), name='browseMangaAPI'),
+    path('popular/', views.popularMangaAPI.as_view(), name='popularMangaAPI'),
     path('search/', views.searchMangaAPI.as_view(), name= 'searchMangaAPI'),
     path('manga/', views.chapterMangaAPI.as_view(), name= 'chapterMangaAPI'),
     path('page/', views.pageMangaAPI.as_view(), name= 'PageMangaAPI'),
