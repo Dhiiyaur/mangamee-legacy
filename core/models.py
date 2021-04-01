@@ -28,8 +28,31 @@ def BrowseMangaName():
 
 		browseResult.append(dbManga)
 
-	print(browseResult)
 	return browseResult
+
+
+
+def PopularMangaName(page):
+
+	url = 'https://mangahub.io/popular/page/'
+
+	url = url + f'{page}/'
+	req = requests.get(url)
+	soup = BeautifulSoup(req.content, 'html.parser')
+	result = soup.find_all(class_='media-left')
+
+	popularResult = []
+
+	for i in result:
+
+		dbManga = {}
+		dbManga['MangaCover'] = i.find("img")['src']
+		dbManga['MangaLink'] = i.find("a")['href']
+		dbManga['MangaTitle'] = i.find("a")['href'].split('/')[-1].split('_')[0].replace('-', ' ')
+
+		popularResult.append(dbManga)
+
+	return popularResult
 
 	
 # ENG
@@ -126,7 +149,7 @@ def MH_manga_image(manga_name, chapter):
 	base_url, type_image = results[0] + '/' , '.' + results[-1]
 	list_image = []
 
-	for i in range(1, 100):
+	for i in range(1, 150):
 
 		manga_url = {}
 		manga_url['image'] = base_url + str(i) + type_image
